@@ -142,12 +142,14 @@ for ie in range(N_energy):
         G_ln = np.dot(G_ln,np.dot(tau,g_right[i_len]))
         G_rn = np.dot(np.dot(g_right[i_len], tau), G_rn)
 
-    #  at final step  G_{N0} is calculated
+    #  at final step  G_{N0} & G_{0N} are calculated
 
-    aux = (abs(G_rn[0,0])*abs(G_ln[1,1]))**2 - \
-          (abs(G_rn[1,0])*abs(G_ln[0,1]))**2
+    aux1 = np.dot(G_rn, np.dot(sig_pm, G_ln))
+    aux2 = np.dot(G_rn_a, np.dot(sig_nm, G_ln_a))
+    aux3 = np.dot(aux1, np.dot(sig_zm, np.dot(rho_lead(energy),aux2)))
+    aux = np.dot(rho_lead(energy),aux3)
 
-    j_s = rho_lead(energy)**2 * aux
+    j_s = np.trace(aux)
     
     print " %.3f   %.3f  %.3f  %.3f   %.3f   %.3f   %.3f " \
         %(energy.real, abs(G_rn[0,0]), abs(G_ln[1,1]), abs(G_rn[1,0]),

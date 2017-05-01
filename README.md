@@ -9,3 +9,5 @@ magnetic field.
 * `g_lead_dec`: calculates the lead's Green's function using the decimation
   technique.
 * `g_lead`: calculates the lead's Green's function using analytical formula.
+* `rho_lead`: calculates DOS of site alpha using the analytical approach.
+*
