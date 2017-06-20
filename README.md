@@ -10,4 +10,26 @@ magnetic field.
   technique.
 * `g_lead`: calculates the lead's Green's function using analytical formula.
 * `rho_lead`: calculates DOS of site alpha using the analytical approach.
-*
+
+## Test The Code
+
+To make sure that the initial implementation of the code is correct
+what we can do is to simulate the electronic conductance of the
+lattice using the Landauer-B\"{u}ttiker formalism. The algorithm to
+calculate the Green's function of system is quite similar. The only
+changes that must be apply are:
+
+* The magnetic site must be removed, and instead a reservoir similar
+  to the right side must be added.
+
+* The spin up and down rows must be imagined as a lattice with twice
+  number of sites in each slice.
+
+* The hopping between spin up and down state (row) must be added.
+
+After applying these changes and using the conductance formulation in
+terms of the Green's function of the system, one expects to see
+quantum conductance in a clean system.
+
+The test code is implemented in `sq_Spump_test.py`.
+
